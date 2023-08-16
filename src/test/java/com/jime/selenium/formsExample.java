@@ -24,11 +24,11 @@ public class formsExample extends BaseTestClass {
     }
 
     void login(){
-        WebElement txtUsername = driver.findElement(By.id("user_login")); //eliminar las vocales del text > abreviacion de los controles
+        WebElement txtUsername = driver.findElement(By.id("user_login"));
         txtUsername.clear();
-        txtUsername.sendKeys(username); // estas ultimas dos, son celdas del primero
+        txtUsername.sendKeys(username);
 
-        WebElement txtPassword =  driver.findElement(By.name("pwd"));
+        WebElement txtPassword = driver.findElement(By.name("pwd"));
         txtPassword.clear();
         txtPassword.sendKeys(password);
 
@@ -57,22 +57,25 @@ public class formsExample extends BaseTestClass {
     }
 
     void personalDetails() throws InterruptedException {
-        new WebDriverWait(driver, Duration.ofSeconds(4)).until(driver -> driver.findElement(By.id("Female"))).click();
+        new WebDriverWait(driver, Duration.ofSeconds(4))
+                .until(driver -> driver.findElement(By.id("Female"))).click();
 
         WebElement txtFirstName = driver.findElement(By.name("firstname"));
         txtFirstName.clear();
         txtFirstName.sendKeys("Jessica");
 
-        WebElement txtLastName = driver.findElement(By.id("firstname"));
+        WebElement txtLastName = driver.findElement(By.id("lastname"));
         txtLastName.clear();
         txtLastName.sendKeys("Loren");
 
         WebElement txtStreet = driver.findElement(By.name("Address"));
-        txtLastName.clear();
-        txtLastName.sendKeys("Test Address #405");
+        txtStreet.clear();
+        txtStreet.sendKeys("Test Address #405");
 
         Select drpCountry = new Select(driver.findElement(By.id("Country")));
         drpCountry.selectByVisibleText("Colombia");
+
+        Thread.sleep(2000);
     }
 
 
@@ -95,6 +98,11 @@ public class formsExample extends BaseTestClass {
         WebElement txtConfirmPassword = driver.findElement(By.name("ConfirmPassword"));
         txtConfirmPassword.clear();
         txtConfirmPassword.sendKeys(password);
+
+        WebElement txtWorkHours = driver.findElement(By.id("whours"));
+        txtWorkHours.clear();
+        txtWorkHours.sendKeys("24");
+        txtWorkHours.submit();
 
     }
 

@@ -1,0 +1,13 @@
+{
+  "theme": "STANDARD",
+  "encoding": "utf-8",
+  "protocol": "HTTPS",
+  "timelineEnabled": false,
+  "offlineMode": true,
+  "thumbnailForBase64": false,
+  "documentTitle": "Execution Reports",
+  "reportName": "Titanium Institute Report",
+  "timeStampFormat": "dd-MM-yyyy hh_mm:ss",
+  "js": "document.getElementByClassName('logo')[0].style.display='none'",
+  "css": ""
+}

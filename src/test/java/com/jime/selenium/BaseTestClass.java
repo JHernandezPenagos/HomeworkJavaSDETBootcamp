@@ -3,32 +3,47 @@ package com.jime.selenium;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Parameters;
 
 import java.time.Duration;
 
 public class BaseTestClass {
     protected WebDriver driver;
     protected String demoSite = "https://demosite.titaniuminstitute.com.mx/wp-admin/admin.php?page=sch-dashboard";
-    protected String username = "admin";
-    protected String password = "G3-ySzY%";
+    String username = "admin";
+    String password = "G3-ySzY%";
 
     @BeforeTest
-    void setup() {
-        WebDriverManager.chromedriver().setup();
-        //System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir")+"/src/main/resources/driver/chrome-mac-x64/chromedriver");
-        driver = new ChromeDriver();
+    @Parameters("browser")
+    public void setup(String browser) {
+        switch (browser) {
+            case "Chrome" -> {
+                //WebDriverManager.chromedriver().setup();
+                driver = new ChromeDriver();
+            }
+            case "Edge" -> {
+                //WebDriverManager.edgedriver().setup();
+                driver = new EdgeDriver();
+            }
+            case "Firefox" -> {
+                //WebDriverManager.firefoxdriver().setup();
+                driver = new FirefoxDriver();
+            }
+            default -> System.err.println("Browser is not listed!");
+        }
+
         driver.manage().window().maximize();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(6));
     }
 
     @AfterTest
-    void turnDown() {
+    public void turnDown() {
         driver.quit();
     }
-
 
     void wait(int seg) {
         try {
