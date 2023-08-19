@@ -1,17 +1,15 @@
-package com.jime.selenium;
+package com.jime.selenium.commands;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
-import org.openqa.selenium.InvalidArgumentException;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
-public class SeleniumExceptions {
+public class LocatorsExample {
     WebDriver driver;
     String demoSiteUrl = "https://demosite.titaniuminstitute.com.mx/wp-admin/admin.php?page=sch-dashboard";
     String actResult = ""; // el valor que quiero guardar para hacer la comparativa
@@ -27,18 +25,16 @@ public class SeleniumExceptions {
 
     @Test
     void firstTest() {
-        try {
-            driver.navigate().to(demoSiteUrl);
-        } catch (InvalidArgumentException iae) {
-            driver.navigate().to("https://"+ demoSiteUrl);
-        }
+        driver.navigate().to(demoSiteUrl);
+        driver.findElement(By.id("user_login")).clear();
+        driver.findElement(By.id("user_login")).sendKeys(username);
+        driver.findElement(By.name("pwd")).clear();
+        driver.findElement(By.name("pwd")).sendKeys(password);
+        driver.findElement(By.cssSelector("#rememberme")).click();
+        driver.findElement(By.xpath("//input[contains(@value, 'Log')]")).click();
 
-        try {
-            driver.findElement(By.id("user_logi")).sendKeys(username);
-            Assert.assertTrue(true);
-        } catch (NoSuchElementException nse){
-            Assert.fail("Test Failes: element is not found: "+ nse.getMessage());
-        }
+        actResult = driver.findElement(By.className("wpsp-schoolname")).getText();
+        Assert.assertEquals(actResult,expResult,"El texto no es igual"); //Thread.sleep(2000)
 
     }
 
@@ -46,4 +42,5 @@ public class SeleniumExceptions {
     void turnDown() {
         driver.quit();
     }
+
 }

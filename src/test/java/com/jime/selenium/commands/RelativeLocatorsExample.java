@@ -1,4 +1,4 @@
-package com.jime.selenium;
+package com.jime.selenium.commands;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
@@ -10,7 +10,9 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-public class WebElementExample {
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
+
+public class RelativeLocatorsExample {
     WebDriver driver;
     String demoSiteUrl = "https://demosite.titaniuminstitute.com.mx/wp-admin/admin.php?page=sch-dashboard";
     String actResult = ""; // el valor que quiero guardar para hacer la comparativa
@@ -27,24 +29,28 @@ public class WebElementExample {
     @Test
     void firstTest() throws InterruptedException {
         driver.navigate().to(demoSiteUrl);
-        WebElement txtUsername = driver.findElement(By.id("user_login")); //eliminar las vocales del text > abreviacion de los controles
-        txtUsername.clear();
-        txtUsername.sendKeys(username); // estas ultimas dos, son celdas del primero
 
-        WebElement txtPassword =  driver.findElement(By.name("pwd"));
-        txtPassword.clear();
-        txtPassword.sendKeys(password);
+        /*driver.findElement(By.id("user_login")).clear();
+        driver.findElement(By.id("user_login")).sendKeys(username);*/
 
-        WebElement chkRememberMe = driver.findElement(By.cssSelector("#rememberme"));
-        chkRememberMe.click();
+        driver.findElement(with(By.tagName("input"))
+                        .above(driver.findElement(By.name("pwd"))))
+                .sendKeys(username);
 
-        WebElement btnLogin = driver.findElement(By.xpath("//input[contains(@value,'Log')]"));
-        btnLogin.click();
+        /*driver.findElement(By.name("pwd")).clear();
+        driver.findElement(By.name("pwd")).sendKeys(password);*/
+        driver.findElement(with(By.tagName("input"))
+                        .below(By.id("user_login")))
+                .sendKeys(password);
 
-        WebElement lblTitaniumTitle = driver.findElement(By.className("wpsp-schoolname"));
-        actResult = lblTitaniumTitle.getText();
+        //driver.findElement(By.cssSelector("#rememberme")).click();
+        driver.findElement(with(By.tagName("input"))
+                        .toLeftOf(By.xpath("//input[contains(@value,'Log')]")))
+                .click();
 
+        driver.findElement(By.xpath("//input[contains(@value,'Log')]")).click();
 
+        actResult = driver.findElement(By.className("wpsp-schoolname")).getText();
         Assert.assertEquals(actResult, expResult, "El texto no es igual");
         Thread.sleep(2000);
 

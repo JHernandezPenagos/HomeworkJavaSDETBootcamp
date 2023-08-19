@@ -1,10 +1,8 @@
-package com.jime.selenium;
+package com.jime.selenium.commands;
 
 import org.testng.annotations.Test;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Point;
-
-import java.awt.*;
 
 public class WindowManageExample extends BaseTestClass {
     @Test

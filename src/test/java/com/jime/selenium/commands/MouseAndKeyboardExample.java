@@ -1,6 +1,5 @@
-package com.jime.selenium;
+package com.jime.selenium.commands;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;

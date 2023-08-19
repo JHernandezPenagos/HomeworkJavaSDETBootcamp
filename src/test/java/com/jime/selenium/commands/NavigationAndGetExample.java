@@ -1,4 +1,4 @@
-package com.jime.selenium;
+package com.jime.selenium.commands;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;

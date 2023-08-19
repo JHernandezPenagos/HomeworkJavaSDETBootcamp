@@ -1,4 +1,4 @@
-package com.jime.selenium;
+package com.jime.selenium.commands;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;

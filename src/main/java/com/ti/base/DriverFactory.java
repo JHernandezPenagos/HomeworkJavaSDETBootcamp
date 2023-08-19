@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.safari.SafariDriver;
 
 public class DriverFactory {
     private static DriverFactory instance = new DriverFactory();
@@ -23,6 +24,7 @@ public class DriverFactory {
             case CHROME -> driver.set(new ChromeDriver());
             case EDGE -> driver.set(new EdgeDriver());
             case FIREFOX -> driver.set(new FirefoxDriver());
+            case SAFARI -> driver.set(new SafariDriver());
         }
         driver.get().manage().window().maximize();
     }

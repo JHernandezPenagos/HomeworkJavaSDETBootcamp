@@ -4,7 +4,7 @@
     <test name="Chrome Test">
         <parameter name="browser" value="Chrome"/>
         <classes>
-            <class name="com.jime.selenium.ExtentReportExample"></class>
+            <class name="com.jime.selenium.commands.ExtentReportExample"></class>
         </classes>
     </test>
 </suite>
