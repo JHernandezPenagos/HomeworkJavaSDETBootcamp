@@ -1,8 +1,8 @@
 package com.jime.selenium.testcases;
 
 import com.jime.homework.*;
-import com.ti.base.BrowserType;
-import com.ti.base.DriverFactory;
+import com.ti.baseuiweb.BrowserType;
+import com.ti.baseuiweb.DriverFactory;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Parameters;

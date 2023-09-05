@@ -1,0 +1,24 @@
+package com.ti.baseapi;
+
+import io.restassured.RestAssured;
+
+public class BaseModel {
+    public static BaseModel actualModel;
+    public static final String BASE_URL = "https://regres.in/api/";
+
+    public <TModel extends BaseModel> TModel getInstance(Class<TModel> model){
+        /*Object objModel = RestAssured.get(BASE_URL).as(model);
+        return model.cast(objModel);*/
+        Object objModel = RestAssured.get(BASE_URL + ServiceFactory.getEndPoint()).as(model);
+        return model.cast(objModel);
+    }
+
+    public <TModel extends BaseModel> TModel as(Class<TModel>model){
+        try {
+            return (TModel) this;
+        }catch (Exception e){
+            System.err.println(e.getMessage());
+        }
+        return null;
+    }
+}

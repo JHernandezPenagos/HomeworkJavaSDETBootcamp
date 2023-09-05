@@ -27,7 +27,7 @@ public class PeekAndPrintExample {
 
     @Test
     void printPeekTest(){
-        RestAssured.get(BASE_URL)
+        RestAssured.options(BASE_URL)
                 .prettyPrint();
     }
 }
